@@ -16,8 +16,37 @@ use App\Http\Controllers\ContatoController;
 |
 */
 
-Route::get('/', [PrincipalController::class, 'principal']);
+Route::get('/', [PrincipalController::class, 'principal'])->name('site.index');
 
-Route::get('/sobre', [SobreController::class, 'sobre']);
+Route::get('/sobre', [SobreController::class, 'sobre'])->name('site.sobre');
 
-Route::get('/contato', [ContatoController::class, 'contato']);
+Route::get('/contato', [ContatoController::class, 'contato'])->name('site.contato');
+
+Route::get('/login', function () {
+    return 'Login';
+})->name('site.login');
+
+Route::prefix('/app')->group(function () {
+    Route::get('/clientes', function () {
+        return 'clientes';
+    }
+    )->name('app.clientes');
+
+    Route::get('/fornecedores', function () {
+        return 'fornecedores';
+    }
+    )->name('app.fornecedores');
+
+    Route::get('/produtos', function () {
+        return 'produtos';
+    }
+    )->name('app.produtos');
+});
+
+// Route::get('/contato/{nome}/{categoria_id}', function (string $nome, int $categoria_id = 1) {
+//     echo "Estamos aqui, $nome $categoria_id";
+// })->where('categoria_id', '[0-9]+')->where('nome', '[A-Za-z]+');
+
+Route::fallback(function () {
+    echo 'A rota acessada não existe. <a href="' . route('site.index') . '">clique aqui</a> para retornar a página principal';
+});
