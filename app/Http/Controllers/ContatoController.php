@@ -18,13 +18,13 @@ class ContatoController extends Controller
             'nome' => 'required|min:3|max:40',
             'telefone' => 'required',
             'email' => 'email',
-            'motivo_contato' => 'required',
-            'mensagem' => 'required',
+            'motivo_contatos_id' => 'required',
+            'mensagem' => 'required|max:2000',
+        ],[
+            'required' => 'O campo :attribute é obrigatório',
+            'nome.max' => 'O campo nome deve ter no máximo 40 caracteres'
         ]);
-        $contato = new SiteContato();
-        $contato->fill($request->all());
-        $contato->save();
-
-        return view('site.contato');
+        SiteContato::create($request->all());
+        return redirect()->route('site.index');
     }
 }
