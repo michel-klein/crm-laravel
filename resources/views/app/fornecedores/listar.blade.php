@@ -33,13 +33,13 @@
                             <td>{{ $fornecedor->site }}</td>
                             <td>{{ $fornecedor->uf }}</td>
                             <td>{{ $fornecedor->email }}</td>
-                            <td>Excluir</td>
+                            <td><a href="{{ route('app.fornecedores.excluir', $fornecedor->id) }}">Excluir</a></td>
                             <td><a href="{{ route('app.fornecedores.editar', $fornecedor->id) }}">Editar</a></td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
-
+            {{ $fornecedores->appends($request)->links() }}
         </div>
     </div>
 </div>
