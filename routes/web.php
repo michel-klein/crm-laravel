@@ -6,6 +6,9 @@ use App\Http\Controllers\SobreController;
 use App\Http\Controllers\ContatoController;
 use App\Http\Controllers\FornecedorController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\ProdutoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +39,10 @@ Route::middleware('autenticacao')->prefix('/app')->group(function () {
     Route::get('/clientes', [ClienteController::class, 'index'])->name('app.clientes');
 
     Route::get('/fornecedores', [FornecedorController::class, 'index'])->name('app.fornecedores');
+    Route::post('/fornecedores/listar', [FornecedorController::class, 'listar'])->name('app.fornecedores.listar');
+    Route::get('/fornecedores/adicionar', [FornecedorController::class, 'adicionar'])->name('app.fornecedores.adicionar');
+    Route::post('/fornecedores/adicionar', [FornecedorController::class, 'adicionar'])->name('app.fornecedores.adicionar');
+    Route::get('/fornecedores/editar/{id}/{msg?}', [FornecedorController::class, 'editar'])->name('app.fornecedores.editar');
 
     Route::get('/produtos', [ProdutoController::class, 'index'])->name('app.produtos');
 });
