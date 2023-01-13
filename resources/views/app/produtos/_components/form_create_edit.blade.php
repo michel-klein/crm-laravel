@@ -11,6 +11,13 @@
         {{ $errors->has('descricao') ? $errors->first('descricao') : '' }}
         <input type="text" name="peso" value="{{ $produto->peso ?? old('peso') }}" placeholder="Peso" class="borda-preta">
         {{ $errors->has('peso') ? $errors->first('peso') : '' }}
+        <select name="fornecedor_id">
+            <option>Selecione um fornecedor</option>
+            @foreach($fornecedores as $fornecedor)
+                <option value="{{ $fornecedor->id }}" {{ ($produto->fornecedor_id ?? old('fornecedor_id')) == $fornecedor->id ? 'selected' : '' }}>{{ $fornecedor->nome }}</option>
+            @endforeach
+        </select>
+        {{ $errors->has('fornecedor_id') ? $errors->first('fornecedor_id') : '' }}
         <select name="unidade_id">
             <option>Selecione a unidade de medida</option>
             @foreach($unidades as $unidade)
