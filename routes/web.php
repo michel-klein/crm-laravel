@@ -9,6 +9,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\ProdutoDetalheController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +48,7 @@ Route::middleware('autenticacao')->prefix('/app')->group(function () {
     Route::get('/fornecedores/excluir/{id}', [FornecedorController::class, 'excluir'])->name('app.fornecedores.excluir');
 
     Route::resource('/produtos', ProdutoController::class);
+    Route::resource('/produto-detalhes', ProdutoDetalheController::class);
 });
 
 // Route::get('/contato/{nome}/{categoria_id}', function (string $nome, int $categoria_id = 1) {
