@@ -9,8 +9,8 @@
     </div>
     <div class="menu">
         <ul>
-            <li><a href="{{ route('app.fornecedores.adicionar') }}">Novo</a></li>
-            <li><a href="{{ route('app.fornecedores') }}">Consulta</a></li>
+            <li><a>Novo</a></li>
+            <li><a>Consulta</a></li>
         </ul>
     </div>
     <div class="informacao-pagina">
