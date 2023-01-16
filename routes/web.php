@@ -7,9 +7,11 @@ use App\Http\Controllers\ContatoController;
 use App\Http\Controllers\FornecedorController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\ProdutoDetalheController;
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\PedidoController;
+use App\Http\Controllers\PedidoProdutoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,8 +39,6 @@ Route::middleware('autenticacao')->prefix('/app')->group(function () {
 
     Route::get('/sair', [LoginController::class, 'sair'])->name('app.sair');
 
-    Route::get('/clientes', [ClienteController::class, 'index'])->name('app.clientes');
-
     Route::get('/fornecedores', [FornecedorController::class, 'index'])->name('app.fornecedores');
     Route::post('/fornecedores/listar', [FornecedorController::class, 'listar'])->name('app.fornecedores.listar');
     Route::get('/fornecedores/listar', [FornecedorController::class, 'listar'])->name('app.fornecedores.listar');
@@ -49,11 +49,12 @@ Route::middleware('autenticacao')->prefix('/app')->group(function () {
 
     Route::resource('/produtos', ProdutoController::class);
     Route::resource('/produto-detalhes', ProdutoDetalheController::class);
+    Route::resource('/clientes', ClienteController::class);
+    Route::resource('/pedidos', PedidoController::class);
+    // Route::resource('/pedido-produtos', PedidoProdutoController::class);
+    Route::get('pedido-produtos/create/{pedido}', [PedidoProdutoController::class, 'create'])->name('pedido-produtos.create');
+    Route::post('pedido-produtos/store/{pedido}', [PedidoProdutoController::class, 'store'])->name('pedido-produtos.store');
 });
-
-// Route::get('/contato/{nome}/{categoria_id}', function (string $nome, int $categoria_id = 1) {
-//     echo "Estamos aqui, $nome $categoria_id";
-// })->where('categoria_id', '[0-9]+')->where('nome', '[A-Za-z]+');
 
 Route::fallback(function () {
     echo 'A rota acessada não existe. <a href="' . route('site.index') . '">clique aqui</a> para retornar a página principal';
