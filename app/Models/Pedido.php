@@ -9,6 +9,6 @@ class Pedido extends Model
 {
     use HasFactory;
     public function produtos() {
-        return $this->belongsToMany('App\Models\Produto', 'pedido_produtos')->withPivot('created_at');
+        return $this->belongsToMany('App\Models\Produto', 'pedido_produtos')->withPivot('id', 'created_at');
     }
 }
